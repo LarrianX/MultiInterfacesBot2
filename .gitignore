@@ -1,0 +1,10 @@
+*.session
+*.session-journal
+.idea
+*.jpg
+*.mp4
+*.ogg
+*.mp3
+*.webp
+*.webm
+#TestCase.py
