@@ -1,9 +1,6 @@
-from typing import Optional
-from abc import ABC, abstractmethod
-import unittest
+from abc import ABC
 
 from ..media import Media
-from ...TestCase import TestCase
 
 
 class Sticker(Media, ABC):
@@ -19,15 +16,3 @@ class Sticker(Media, ABC):
     """
     alt: str
     sticker_set: object
-
-
-class TestSticker(TestCase):
-    def test_sticker_initialization(self):
-        id = 1
-        file_name = "sticker.webp"
-        file_size = 1024
-        alt = "⭐"
-        sticker_set = None
-        source = None
-        caller = None
-        sticker = self._test_initialization(Sticker, locals())

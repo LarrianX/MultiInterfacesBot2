@@ -1,11 +1,8 @@
 from typing import Optional
-from abc import ABC, abstractmethod
-from datetime import datetime
-import unittest
+from abc import ABC
 
 from ..entity import Entity
 from ..user import User
-from ...TestCase import TestCase
 
 
 class PollAnswer(Entity, ABC):
@@ -21,14 +18,3 @@ class PollAnswer(Entity, ABC):
     text: str
     voters: list[User]
     correct: Optional[bool]
-
-
-class TestPollAnswer(TestCase):
-    def test_poll_answer_initialization(self):
-        id = 1
-        text = "Option 1"
-        voters = [User(id=1, platform="CLI", first_name="john", last_name="doe", username="john_doe", is_bot=False, source=None, caller=None)]
-        correct = None
-        source = None
-        caller = None
-        poll_answer = self._test_initialization(PollAnswer, locals())

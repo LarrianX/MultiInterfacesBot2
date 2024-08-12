@@ -1,12 +1,10 @@
 from typing import Optional
-from abc import ABC, abstractmethod
+from abc import ABC
 from datetime import datetime
-import unittest
 
 from .poll_answer import PollAnswer
 from ..entity import Entity
 from ..user import User
-from ...TestCase import TestCase
 
 
 class Poll(Entity, ABC):
@@ -36,22 +34,3 @@ class Poll(Entity, ABC):
     closed: bool
     close_period: Optional[int]
     close_date: Optional[datetime]
-
-
-class TestPoll(TestCase):
-    def test_poll_initialization(self):
-        id = 1
-        question = "What is your favorite color?"
-        answers = [PollAnswer(id=1, text="Red", voters=[], correct=False, source=None, caller=None),
-                   PollAnswer(id=2, text="Blue", voters=[User(id=1, platform="CLI", first_name="john", last_name="doe", username="john_doe", is_bot=False, source=None, caller=None)], correct=True, source=None, caller=None)]
-        voters = [User(id=1, platform="CLI", first_name="john", last_name="doe", username="john_doe", is_bot=False, source=None, caller=None)]
-        public_votes = True
-        multiple_choice = False
-        quiz = False
-        solution = None
-        closed = False
-        close_period = 3600
-        close_date = datetime.now()
-        source = None
-        caller = None
-        poll = self._test_initialization(Poll, locals())

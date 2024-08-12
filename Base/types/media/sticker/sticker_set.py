@@ -1,9 +1,6 @@
-from typing import Optional
-from abc import ABC, abstractmethod
-import unittest
+from abc import ABC
 
-from .. import Attachment
-from ...TestCase import TestCase
+from Base.types.entity import Attachment
 
 
 class StickerSet(Attachment, ABC):
@@ -17,13 +14,3 @@ class StickerSet(Attachment, ABC):
     """
     title: str
     count_stickers: int
-
-
-class TestStickerSet(TestCase):
-    def test_sticker_set_initialization(self):
-        id = 1
-        title = "Example Sticker Set"
-        count_stickers = 100
-        source = None
-        caller = None
-        sticker_set = self._test_initialization(StickerSet, locals())

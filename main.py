@@ -1,54 +1,46 @@
 import asyncio
 import threading
 import importlib
+import json
 import os
-from typing import Any
-from telethon.types import Message
+from typing import Any, Type
 
-# from interfaces.base import Interface, BaseInterface
+from Base import BaseInterface, Interface
 
 DIRECTORY = "interfaces"
 
 
-def load_interfaces(base_interface: Any, directory=DIRECTORY):
+def load_interfaces(base_interface: BaseInterface, directory=DIRECTORY, list="list.json"):
     results = []
 
     # Проходим по всем папкам в указанной директории
-    for root, dirs, files in os.walk(directory):
-        if '__init__.py' in files and root != directory:
-            # Определяем модульное имя по пути
-            module_name = os.path.relpath(root, os.getcwd()).replace(os.sep, '.')
+    if list in os.listdir(directory):
+        list_of_interfaces = json.load(open(os.path.join(os.getcwd(), directory, list)))
 
+        for i in list_of_interfaces["list"]:
+            module_name = f"{directory}.{i}"
             try:
                 # Импортируем модуль
                 module = importlib.import_module(module_name)
 
-                # Проверяем наличие метода get
-                if hasattr(module, 'get') and callable(getattr(module, 'get')):
-                    # Вызываем метод get и добавляем результат в список
-                    class_ = module.get()
-                    results.append(class_(base_interface))
-
-            except Exception as e:
-                print(f"Ошибка при импорте модуля {module_name}: {e}")
+                # Проверяем наличие подкласса BaseInterface
+                if hasattr(module, "get"):
+                    interface: Type = module.get()
+                    if issubclass(interface, Interface):
+                        obj = interface(base_interface)
+                        results.append(obj)
+            except ImportError:
+                print(f"Ошибка при импорте модуля: {module_name}")
 
     return results
 
 
-async def start_interfaces(interfaces: list[Any]) -> list[threading.Thread]:
-    loop = asyncio.get_event_loop()
-    threads = []
-    for obj in interfaces:
-        thread = threading.Thread(target=obj.start(), args=(loop,))
-        threads.append(thread)
-        thread.start()
-    return threads
-
-
 if __name__ == '__main__':
     # Запуск ядра
-    base = BaseInterface(None)
-    interfaces: list[Any] = load_interfaces(base)
+    base = BaseInterface()
+    interfaces: list[Interface] = load_interfaces(base)
     # print(interfaces)
+    loop = asyncio.get_event_loop()
 
-    asyncio.run(start_interfaces(interfaces))
+    interfaces[0].start(loop)
+

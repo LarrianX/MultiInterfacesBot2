@@ -1,9 +1,6 @@
-from typing import Optional
-from abc import ABC, abstractmethod
-import unittest
+from abc import ABC
 
 from .media import Media
-from ...TestCase import TestCase
 
 
 class Audio(Media, ABC):
@@ -17,14 +14,3 @@ class Audio(Media, ABC):
     :param caller: Интерфейс, создавший этот объект
     """
     duration: int | float
-
-
-class TestAudio(TestCase):
-    def test_audio_initialization(self):
-        id = 1
-        file_name = "example.mp4"
-        file_size = 1024
-        duration = 3.6
-        source = None
-        caller = None
-        audio = self._test_initialization(Audio, locals())

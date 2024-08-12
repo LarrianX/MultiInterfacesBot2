@@ -1,0 +1,576 @@
+{
+    "sticker": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 541175087705910244,
+            "access_hash": -1888226113802988133,
+            "file_reference": "bytes",
+            "date": "2020-08-16 13:50:14",
+            "mime_type": "image/webp",
+            "size": 44054,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeImageSize",
+                    "w": 512,
+                    "h": 459
+                },
+                {
+                    "_": "DocumentAttributeSticker",
+                    "alt": "\ud83c\udf19",
+                    "stickerset": {
+                        "_": "InputStickerSetID",
+                        "id": 541175087705883106,
+                        "access_hash": 2989341933578483486
+                    },
+                    "mask": false,
+                    "mask_coords": null
+                },
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": "sticker.webp"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoPathSize",
+                    "type": "j",
+                    "bytes": "bytes"
+                },
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 287,
+                    "size": 24130
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "animated_sticker": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5269489044680622646,
+            "access_hash": 2212695193753809378,
+            "file_reference": "bytes",
+            "date": "2024-04-20 10:24:38",
+            "mime_type": "video/webm",
+            "size": 82612,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeVideo",
+                    "duration": 1.2,
+                    "w": 512,
+                    "h": 512,
+                    "round_message": false,
+                    "supports_streaming": true,
+                    "nosound": false,
+                    "preload_prefix_size": null
+                },
+                {
+                    "_": "DocumentAttributeSticker",
+                    "alt": "\ud83d\udc8b",
+                    "stickerset": {
+                        "_": "InputStickerSetID",
+                        "id": 481662835428950014,
+                        "access_hash": 6777170575322915674
+                    },
+                    "mask": false,
+                    "mask_coords": null
+                },
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": "sticker.webm"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoPathSize",
+                    "type": "j",
+                    "bytes": "bytes"
+                },
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 320,
+                    "size": 11786
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "image": {
+        "_": "MessageMediaPhoto",
+        "spoiler": false,
+        "photo": {
+            "_": "Photo",
+            "id": 5449510911426550477,
+            "access_hash": -4296681208072204003,
+            "file_reference": "bytes",
+            "date": "2024-06-20 16:50:55",
+            "sizes": [
+                {
+                    "_": "PhotoSize",
+                    "type": "s",
+                    "w": 89,
+                    "h": 90,
+                    "size": 2097
+                },
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 317,
+                    "h": 320,
+                    "size": 26749
+                },
+                {
+                    "_": "PhotoSizeProgressive",
+                    "type": "x",
+                    "w": 750,
+                    "h": 756,
+                    "sizes": [
+                        10490,
+                        55439,
+                        83770,
+                        83784
+                    ]
+                }
+            ],
+            "dc_id": 2,
+            "has_stickers": false,
+            "video_sizes": []
+        },
+        "ttl_seconds": null
+    },
+    "image_file": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5454118251237757236,
+            "access_hash": 5572974431384936763,
+            "file_reference": "bytes",
+            "date": "2024-06-21 09:50:22",
+            "mime_type": "image/jpeg",
+            "size": 415725,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeImageSize",
+                    "w": 1485,
+                    "h": 1980
+                },
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": "IMG_20240615_200450.jpg"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 240,
+                    "h": 320,
+                    "size": 21557
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "video": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": true,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5449510910970318860,
+            "access_hash": 255320570054970364,
+            "file_reference": "bytes",
+            "date": "2024-06-20 17:01:46",
+            "mime_type": "video/mp4",
+            "size": 658706,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeVideo",
+                    "duration": 12.911,
+                    "w": 720,
+                    "h": 1280,
+                    "round_message": false,
+                    "supports_streaming": true,
+                    "nosound": false,
+                    "preload_prefix_size": null
+                },
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": "\u0411\u043e\u0441\u0441_\u0432_\u0442\u0435\u0440\u0440\u0430\u0440\u0438\u0438_\ud83e\udd2f_#shorts_#short_#\u0442\u0435\u0440\u0440\u0430\u0440\u0438\u044f_#terraria_#\u043c\u0435\u043c_#\u043c\u0435\u043c\u044b.mp4"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 180,
+                    "h": 320,
+                    "size": 7879
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "gif": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5271562830984781660,
+            "access_hash": -4705736482081227806,
+            "file_reference": "bytes",
+            "date": "2022-12-23 10:00:17",
+            "mime_type": "video/mp4",
+            "size": 36805,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeVideo",
+                    "duration": 6.0,
+                    "w": 416,
+                    "h": 176,
+                    "round_message": false,
+                    "supports_streaming": true,
+                    "nosound": true,
+                    "preload_prefix_size": null
+                },
+                {
+                    "_": "DocumentAttributeAnimated"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 135,
+                    "size": 5316
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "audio_file": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5449510910970318872,
+            "access_hash": 3293886428038595599,
+            "file_reference": "bytes",
+            "date": "2024-06-20 17:04:17",
+            "mime_type": "audio/mpeg",
+            "size": 2412181,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeAudio",
+                    "duration": 146,
+                    "voice": false,
+                    "title": "1985",
+                    "performer": "Bo Burnham",
+                    "waveform": null
+                },
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": "Bo Burnham - 1985.mp3"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 320,
+                    "size": 9307
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "audio": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": true,
+        "document": {
+            "_": "Document",
+            "id": 5449510910970318877,
+            "access_hash": 489970424418994087,
+            "file_reference": "bytes",
+            "date": "2024-06-20 17:07:57",
+            "mime_type": "audio/ogg",
+            "size": 87361,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeAudio",
+                    "duration": 4,
+                    "voice": true,
+                    "title": null,
+                    "performer": null,
+                    "waveform": "bytes"
+                }
+            ],
+            "thumbs": [],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "file": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": false,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5449510910970318925,
+            "access_hash": -8455219293084301556,
+            "file_reference": "bytes",
+            "date": "2024-06-20 17:31:13",
+            "mime_type": "text/plain",
+            "size": 81,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeFilename",
+                    "file_name": ".gitignore"
+                }
+            ],
+            "thumbs": [],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "poll": {
+        "_": "MessageMediaPoll",
+        "poll": {
+            "_": "Poll",
+            "id": 5449510910970300382,
+            "question": "\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0432\u043e\u043f\u0440\u043e\u0441.",
+            "answers": [
+                {
+                    "_": "PollAnswer",
+                    "text": "\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u043e\u0442\u0432\u0435\u0442.",
+                    "option": "bytes"
+                },
+                {
+                    "_": "PollAnswer",
+                    "text": "\u0422\u0435\u0441\u0442\u044b... \u0422\u0435\u0441\u0442\u044b...",
+                    "option": "bytes"
+                }
+            ],
+            "closed": false,
+            "public_voters": false,
+            "multiple_choice": false,
+            "quiz": false,
+            "close_period": null,
+            "close_date": null
+        },
+        "results": {
+            "_": "PollResults",
+            "min": false,
+            "results": [
+                {
+                    "_": "PollAnswerVoters",
+                    "option": "bytes",
+                    "voters": 0,
+                    "chosen": false,
+                    "correct": false
+                },
+                {
+                    "_": "PollAnswerVoters",
+                    "option": "bytes",
+                    "voters": 0,
+                    "chosen": false,
+                    "correct": false
+                }
+            ],
+            "total_voters": 0,
+            "recent_voters": [],
+            "solution": null,
+            "solution_entities": []
+        }
+    },
+    "geo": {
+        "_": "MessageMediaGeo",
+        "geo": {
+            "_": "GeoPoint",
+            "long": 56.789884067036795,
+            "lat": 54.400915578309075,
+            "access_hash": -6887595758470973566,
+            "accuracy_radius": null
+        }
+    },
+    "venue": {
+        "_": "MessageMediaVenue",
+        "geo": {
+            "_": "GeoPoint",
+            "long": 56.778992293823684,
+            "lat": 54.40851791027418,
+            "access_hash": -6887595758470973566,
+            "accuracy_radius": null
+        },
+        "title": "\u0410\u0420\u0425\u0410\u041d\u0413\u0415\u041b\u042c\u0421\u041a\u0418\u0419 \u041b\u0415\u0421\u041f\u0420\u041e\u041c\u0425\u041e\u0417",
+        "address": "\u0421\u043e\u0432\u0435\u0442\u0441\u043a\u0430\u044f \u0423\u043b., \u0434. 65",
+        "provider": "foursquare",
+        "venue_id": "091fd82f197a431ef764eaeb",
+        "venue_type": ""
+    },
+    "round": {
+        "_": "MessageMediaDocument",
+        "nopremium": false,
+        "spoiler": false,
+        "video": false,
+        "round": true,
+        "voice": false,
+        "document": {
+            "_": "Document",
+            "id": 5319033481009846402,
+            "access_hash": -280163481672305207,
+            "file_reference": "bytes",
+            "date": "2024-08-12 15:42:52",
+            "mime_type": "video/mp4",
+            "size": 165358,
+            "dc_id": 2,
+            "attributes": [
+                {
+                    "_": "DocumentAttributeVideo",
+                    "duration": 1.521,
+                    "w": 630,
+                    "h": 630,
+                    "round_message": true,
+                    "supports_streaming": true,
+                    "nosound": false,
+                    "preload_prefix_size": null
+                },
+                {
+                    "_": "DocumentAttributeAudio",
+                    "duration": 1,
+                    "voice": false,
+                    "title": null,
+                    "performer": null,
+                    "waveform": "bytes"
+                }
+            ],
+            "thumbs": [
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 320,
+                    "size": 975
+                }
+            ],
+            "video_thumbs": []
+        },
+        "alt_document": null,
+        "ttl_seconds": null
+    },
+    "message": {
+        "_": "MessageMediaPhoto",
+        "spoiler": false,
+        "photo": {
+            "_": "Photo",
+            "id": 5319033481466077534,
+            "access_hash": 5840034486043881027,
+            "file_reference": "bytes",
+            "date": "2024-08-12 16:13:17",
+            "sizes": [
+                {
+                    "_": "PhotoSize",
+                    "type": "s",
+                    "w": 90,
+                    "h": 51,
+                    "size": 1549
+                },
+                {
+                    "_": "PhotoSize",
+                    "type": "m",
+                    "w": 320,
+                    "h": 180,
+                    "size": 19757
+                },
+                {
+                    "_": "PhotoSize",
+                    "type": "x",
+                    "w": 800,
+                    "h": 450,
+                    "size": 78424
+                },
+                {
+                    "_": "PhotoSizeProgressive",
+                    "type": "y",
+                    "w": 1280,
+                    "h": 720,
+                    "sizes": [
+                        14082,
+                        37655,
+                        66335,
+                        97041,
+                        149299
+                    ]
+                }
+            ],
+            "dc_id": 2,
+            "has_stickers": false,
+            "video_sizes": []
+        },
+        "ttl_seconds": null
+    }
+}

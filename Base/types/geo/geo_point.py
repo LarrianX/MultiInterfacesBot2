@@ -1,9 +1,7 @@
 from typing import Optional
-from abc import ABC, abstractmethod
-import unittest
+from abc import ABC
 
-from Base.types.entity import Attachment
-from Base.TestCase import TestCase
+from ..entity import Attachment
 
 
 class GeoPoint(Attachment, ABC):
@@ -19,14 +17,3 @@ class GeoPoint(Attachment, ABC):
     latitude: float
     longitude: float
     accuracy: Optional[float] = None
-
-
-class TestGeoPoint(TestCase):
-    def test_geo_point_initialization(self):
-        id = 1
-        latitude = 56.0
-        longitude = 37.0
-        accuracy = 10.0
-        source = None
-        caller = None
-        geo_point = self._test_initialization(GeoPoint, locals())

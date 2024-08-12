@@ -1,0 +1,3 @@
+SESSION_NAME = "main"
+PLATFORM = "Telegram"
+RECOVER_CLIENT = True

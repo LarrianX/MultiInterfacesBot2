@@ -1,68 +1,64 @@
-import logging
 import os
-from abc import ABC, abstractmethod
-from typing import Optional, Any
-
-import clipboard
+import logging
+import json
+from datetime import datetime
 
 from .types import *
 
 
-class BaseInterface:
-    def __init__(self, user_db: Any):
-        self.user_db = user_db
-        self.await_download_users = []
+def convert_bytes_to_str(obj):
+    if isinstance(obj, dict):
+        return {convert_bytes_to_str(k): convert_bytes_to_str(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_bytes_to_str(elem) for elem in obj]
+    elif isinstance(obj, bytes):
+        return "bytes"  # Преобразуем байты в строку
+    elif isinstance(obj, datetime):
+        return obj.strftime("%Y-%m-%d %H:%M:%S")
+    else:
+        return obj
 
+
+class BaseInterface:
     async def message_handler(self, message: Message):
         try:
-            if message.attachments and message.from_user.id in self.await_download_users:
-                message.text = "/download"
-
-            if message.from_user.id == 1667209703:
-                replace = {
-                    ", platform='Telegram'": "",
-                    "TelegramUser(id=1667209703, first_name='онигири', last_name=None, username='Y_kto_to', is_bot=False)": "user",
-                    "TelegramChat(id=1667209703, type=<ChatType.PRIVATE: 'private'>, title='онигири', members=[user])": "chat",
-                }
-                f = str(message)
-                for key, value in replace.items():
-                    f = f.replace(key, value)
-                f = f + ","
-                clipboard.copy(f)
-
             print(message)
-            print("Source:", message.source)
-            if message.attachments:
-                print(message.attachments[0])
-            print(f"{message.from_user.first_name}: {message.text!r}")
+            print(message.source)
+            # if message.source.media:
+            #     try:
+            #         with open('data.json', 'r') as file:
+            #             data = json.load(file)
+            #     except FileNotFoundError:
+            #         data = {}
+            #
+            #     # Добавляем новый словарь к существующим данным
+            #     data["message"] = convert_bytes_to_str(message.source.media.to_dict())
+            #
+            #     # Открываем файл для записи и сохраняем обновленные данные
+            #     with open('data.json', 'w') as file:
+            #         json.dump(data, file, indent=4)
 
-            if message.text.startswith("/"):
+            print(f"{message.from_user.first_name}: {message.content!r}")
+
+            if message.content.startswith("/"):
                 await self.command_handler(message)
         except Exception as e:
-            logging.error(f"Ошибка при обработке сообщения: {e}")
+            logging.error(f"Ошибка при обработке сообщения: {type(e)} {e}")
             await message.answer("Произошла ошибка при обработке вашего сообщения.")
 
     async def command_handler(self, message: Message):
         try:
-            raw = message.text[1:].split(" ")
+            raw = message.content[1:].split(" ")
             command = raw[0]
             args = raw[1:]
             func = getattr(self, command, None)
             if func:
-                num_args_expected = func.__code__.co_argcount - 2  # Вычитаем 1, так как первый аргумент это self
-                num_args_provided = len(args)
-                if num_args_provided < num_args_expected:
-                    raise ValueError(
-                        f"Недостаточно аргументов. Ожидалось как минимум: {num_args_expected}, получено: {num_args_provided}")
                 result = await func(message, *args)
                 if result:
                     await message.reply(result)
             else:
                 logging.warning(f"Неизвестная команда: {command}")
                 await message.answer(f"Неизвестная команда: {command}")
-        except ValueError as e:
-            logging.error(f"{e}")
-            await message.answer(f"{e}")
         except Exception as e:
             logging.error(f"Ошибка при обработке команды: {e}")
             await message.answer("Произошла ошибка при обработке вашей команды.")
@@ -70,16 +66,15 @@ class BaseInterface:
     async def _download(self, attachment: Media):
         if hasattr(attachment, "get"):
             b = await attachment.get()
-            if attachment.file_name:
-                file_name = attachment.file_name
-            else:
-                file_name = "unknown"
-                logging.warning(f"Неизвестный тип сущности: {type(attachment)}")
+            file_name = attachment.file_name
             with open(file_name, "wb") as f:
                 f.write(b)
+            return True
+        else:
+            return False
 
     async def echo(self, message: Message, *args):
-        return message.text
+        return message.content
 
     async def system(self, message: Message, *args):
         return f"Exit code: {str(os.system(" ".join(args)))}"
@@ -97,28 +92,11 @@ class BaseInterface:
 
     async def download(self, message: Message, *args):
         if message.attachments:
+            success = False
             for media in message.attachments:
                 if isinstance(media, Media):
-                    await self._download(media)
-            return "Скачано!"
-        else:
-            self.await_download_users.append(message.from_user.id)
-            print(self.await_download_users)  # TODO: использовать logging
-            return "Ожидаю медиа..."
-
-
-class Interface(ABC):
-    def __init__(self, base_interface: BaseInterface):
-        self.base_interface = base_interface
-
-    @abstractmethod
-    async def get_entity(self, id: int) -> Entity:
-        pass
-
-    @abstractmethod
-    async def send_message(self, id: int, text: str, entities: list[Media] = None) -> Message:
-        pass
-
-    @abstractmethod
-    async def start(self):
-        pass
+                    success = await self._download(media)
+            if success:
+                return "Скачано!"
+            else:
+                return "Не скачано..."

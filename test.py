@@ -1,5 +1,6 @@
 import unittest
-from Base.tests import *
+# import Base
+from interfaces.Telegram.tests import *
 
 if __name__ == '__main__':
     unittest.main()
