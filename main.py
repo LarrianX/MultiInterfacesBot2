@@ -1,9 +1,8 @@
-import asyncio
-import threading
+import importlib
 import importlib
 import json
 import os
-from typing import Any, Type
+from typing import Type
 
 from Base import BaseInterface, Interface
 
@@ -17,20 +16,20 @@ def load_interfaces(base_interface: BaseInterface, directory=DIRECTORY, list="li
     if list in os.listdir(directory):
         list_of_interfaces = json.load(open(os.path.join(os.getcwd(), directory, list)))
 
-        for i in list_of_interfaces["list"]:
+        for i in list_of_interfaces:
             module_name = f"{directory}.{i}"
-            try:
-                # Импортируем модуль
-                module = importlib.import_module(module_name)
+            # try:
+            # Импортируем модуль
+            module = importlib.import_module(module_name)
 
-                # Проверяем наличие подкласса BaseInterface
-                if hasattr(module, "get"):
-                    interface: Type = module.get()
-                    if issubclass(interface, Interface):
-                        obj = interface(base_interface)
-                        results.append(obj)
-            except ImportError:
-                print(f"Ошибка при импорте модуля: {module_name}")
+            # Проверяем наличие подкласса BaseInterface
+            if hasattr(module, "get"):
+                interface: Type = module.get()
+                if issubclass(interface, Interface):
+                    obj = interface(base_interface)
+                    results.append(obj)
+            # except ImportError as e:
+            #     print(f"Ошибка при импорте модуля: {module_name}: {repr(e)}")
 
     return results
 
@@ -40,7 +39,5 @@ if __name__ == '__main__':
     base = BaseInterface()
     interfaces: list[Interface] = load_interfaces(base)
     # print(interfaces)
-    loop = asyncio.get_event_loop()
 
-    interfaces[0].start(loop)
-
+    interfaces[0].start(None)

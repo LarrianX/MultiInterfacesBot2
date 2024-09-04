@@ -1,12 +1,9 @@
-import unittest
 import os
-from typing import Any
+import unittest
 
 from dotenv import load_dotenv
 from telethon import TelegramClient
 
-from Base import Entity
-from Base.types.entity import IGNORE_VARS
 from .constants import SESSION_NAME
 
 load_dotenv()

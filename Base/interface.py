@@ -2,8 +2,8 @@ import asyncio
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from .types import *
 from .main import BaseInterface
+from .types import *
 
 
 class Interface(ABC):

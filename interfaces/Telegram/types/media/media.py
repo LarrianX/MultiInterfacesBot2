@@ -1,9 +1,9 @@
 from typing import Optional
 
+from telethon.types import TLObject
+
 from Base import Media as BaseMedia
 from ..entity import TelegramAttachment
-
-from telethon.types import TLObject
 
 
 class TelegramMedia(TelegramAttachment, BaseMedia):

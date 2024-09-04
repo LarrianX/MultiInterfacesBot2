@@ -1,5 +1,5 @@
-from typing import Optional
 from abc import ABC
+from typing import Optional
 
 from ..entity import Entity
 from ..user import User
@@ -16,5 +16,5 @@ class PollAnswer(Entity, ABC):
     :param caller: Интерфейс, создавший этот объект
     """
     text: str
-    voters: list[User]
+    voters: list[User] | int
     correct: Optional[bool]

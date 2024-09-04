@@ -1,3 +1,3 @@
-from .types import *
-from .main import BaseInterface
 from .interface import Interface
+from .main import BaseInterface
+from .types import *

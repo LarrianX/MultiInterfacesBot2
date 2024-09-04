@@ -1,13 +1,13 @@
-from typing import Optional
 from abc import ABC
 from datetime import datetime
+from typing import Optional
 
 from .poll_answer import PollAnswer
-from ..entity import Entity
+from ..entity import Attachment
 from ..user import User
 
 
-class Poll(Entity, ABC):
+class Poll(Attachment, ABC):
     """
     Опрос.
     :param id: ID объекта
@@ -26,7 +26,7 @@ class Poll(Entity, ABC):
     """
     question: str
     answers: list[PollAnswer]
-    voters: list[User]
+    voters: list[User] | int
     public_votes: bool
     multiple_choice: bool
     quiz: bool

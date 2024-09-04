@@ -1,9 +1,9 @@
 from abc import ABC
 
-from Base.types.entity import Attachment
+from ...entity import Entity
 
 
-class StickerSet(Attachment, ABC):
+class StickerSet(Entity, ABC):
     """
     Набор стикеров.
     :param id: ID объекта

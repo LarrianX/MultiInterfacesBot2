@@ -1,14 +1,15 @@
+import telethon.types
+
 from Base import Document as BaseDocument
-from .media import TelegramMedia
 from .audio import TelegramAudio
+from .media import TelegramMedia
 from .photo import TelegramPhoto
+from .sticker import TelegramAnimatedSticker, TelegramSticker, TelegramStickerSet
 from .video import TelegramVideo
 from ...interface import TelegramInterfaceStub
 
-import telethon.types
 
-
-def rstrip_untrusted(string):
+def strip_untrusted(string):
     """
     Удаляет только одно вхождение символов (chars) с конца строки.
     """
@@ -50,7 +51,30 @@ class TelegramDocument(TelegramMedia, BaseDocument):
             elif isinstance(attr, telethon.types.DocumentAttributeSticker):
                 sticker_attributes = attr
 
-        if video_attributes:
+        if sticker_attributes:
+            # Стикер
+            if isinstance(sticker_attributes.stickerset, telethon.types.InputStickerSetID):
+                sticker_set = await TelegramStickerSet.from_tl(sticker_attributes.stickerset, caller=caller)
+            else:
+                sticker_set = sticker_attributes.stickerset
+
+            if video_attributes:
+                return TelegramAnimatedSticker(
+                    **kwargs,
+                    alt=sticker_attributes.alt,
+                    sticker_set=sticker_set,
+                    duration=video_attributes.duration,
+                    file_name=file_name if file_name else "sticker.webm"
+                )
+            else:
+                return TelegramSticker(
+                    **kwargs,
+                    alt=sticker_attributes.alt,
+                    sticker_set=sticker_set,
+                    file_name=file_name if file_name else "sticker.webp"
+                )
+
+        elif video_attributes:
             # Видео
             return TelegramVideo(
                 **kwargs,
@@ -64,9 +88,15 @@ class TelegramDocument(TelegramMedia, BaseDocument):
                 duration=audio_attributes.duration,
                 file_name=file_name if file_name else "audio.ogg"
             )
+        elif image_attributes:
+            # Фото, скинутое в виде файла
+            return TelegramPhoto(
+                **kwargs,
+                file_name=file_name if file_name else "photo.jpg"
+            )
         else:
             # Документ
             return cls(
                 **kwargs,
-                file_name=rstrip_untrusted(file_name)
+                file_name=strip_untrusted(file_name)
             )

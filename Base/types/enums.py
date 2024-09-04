@@ -9,4 +9,3 @@ class ChatType(Enum):
     GROUP = "group"
     SUPERGROUP = "supergroup"
     CHANNEL = "channel"
-    

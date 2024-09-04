@@ -1,5 +1,5 @@
-from .types import *
 from .main import TelegramInterface
+from .types import *
 
 
 def get():

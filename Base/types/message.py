@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-from .entity import Entity, Attachment
 from .chat import Chat
+from .entity import Entity, Attachment
 from .user import User
 
 

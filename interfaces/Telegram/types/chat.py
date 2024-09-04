@@ -1,15 +1,15 @@
 from typing import Optional
 
+from telethon.tl.functions.messages import GetFullChatRequest
+from telethon.tl.types.messages import ChatFull
+from telethon.types import PeerChat, Message
+
 from Base import Chat as BaseChat
 from Base import ChatType
 from .entity import TelegramEntity
 from .user import TelegramUser
-from ..interface import TelegramInterfaceStub
 from ..TestCase import TestCase
-
-from telethon.tl.functions.messages import GetFullChatRequest
-from telethon.tl.types.messages import ChatFull
-from telethon.types import PeerChat, Message
+from ..interface import TelegramInterfaceStub
 
 
 class TelegramChat(TelegramEntity, BaseChat):
@@ -29,7 +29,8 @@ class TelegramChat(TelegramEntity, BaseChat):
             id=tl.full_chat.id,
             type=ChatType.GROUP,
             title=tl.chats[0].title,
-            members=[await TelegramUser.from_tl(user, caller=caller) for user in tl.full_chat.participants.participants],
+            members=[await TelegramUser.from_tl(user, caller=caller) for user in
+                     tl.full_chat.participants.participants],
             #       await TelegramChatParticipant.from_tl(user, rights=tl.chats[0].default_banned_rights, caller=caller)
             #       for user in tl.full_chat.participants.participants],
             source=tl,

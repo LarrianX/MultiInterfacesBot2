@@ -1,6 +1,6 @@
-import os
-import logging
 import json
+import logging
+import os
 from datetime import datetime
 
 from .types import *
@@ -12,33 +12,47 @@ def convert_bytes_to_str(obj):
     elif isinstance(obj, list):
         return [convert_bytes_to_str(elem) for elem in obj]
     elif isinstance(obj, bytes):
-        return "bytes"  # Преобразуем байты в строку
+        return "bytes"
     elif isinstance(obj, datetime):
         return obj.strftime("%Y-%m-%d %H:%M:%S")
     else:
         return obj
 
 
+def dump(message: Message):
+    try:
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        data = {}
+
+    # Добавляем новый словарь к существующим данным
+    data["message"] = convert_bytes_to_str(message.source.media.to_dict())
+
+    # Открываем файл для записи и сохраняем обновленные данные
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
+
 class BaseInterface:
+    def __init__(self):
+        self.wait_download_users = []
+
     async def message_handler(self, message: Message):
         try:
-            print(message)
-            print(message.source)
-            # if message.source.media:
-            #     try:
-            #         with open('data.json', 'r') as file:
-            #             data = json.load(file)
-            #     except FileNotFoundError:
-            #         data = {}
-            #
-            #     # Добавляем новый словарь к существующим данным
-            #     data["message"] = convert_bytes_to_str(message.source.media.to_dict())
-            #
-            #     # Открываем файл для записи и сохраняем обновленные данные
-            #     with open('data.json', 'w') as file:
-            #         json.dump(data, file, indent=4)
-
             print(f"{message.from_user.first_name}: {message.content!r}")
+            print(message)
+
+            if message.attachments:
+                print(message.attachments[0])
+                print(message.attachments[0].source)
+
+            if message.attachments and message.from_user.username in self.wait_download_users:
+                message.content = "/download"
+                self.wait_download_users.remove(message.from_user.username)
+
+            # if message.source.media:
+            #     dump(message)
 
             if message.content.startswith("/"):
                 await self.command_handler(message)
@@ -100,3 +114,6 @@ class BaseInterface:
                 return "Скачано!"
             else:
                 return "Не скачано..."
+        else:
+            self.wait_download_users.append(message.from_user.username)
+            return "Жду медиа..."

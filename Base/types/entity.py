@@ -1,13 +1,13 @@
-from typing import Optional, Any
 from abc import ABC, abstractmethod
-
 from dataclasses import dataclass
+from typing import Optional
+
 from pydantic import BaseModel
 
 IGNORE_VARS = [
     "source",
     "caller",
-    "platform"
+    "platform",
 ]
 
 
@@ -18,7 +18,7 @@ class Entity(BaseModel, ABC):
     :param source: Если преобразовано из другого типа данных, то указывается он
     :param caller: Интерфейс, создавший этот объект
     """
-    id: int
+    id: Optional[int]
     source: Optional[object] = None
     caller: Optional[object] = None
 
@@ -27,6 +27,8 @@ class Entity(BaseModel, ABC):
         # Убираем нежеланные значения
         for i in IGNORE_VARS:
             init_vars.pop(i)
+        if init_vars["id"] is None:
+            init_vars.pop("id")
         # Выставляем аннотации типов для каждой нашей переменной, ведь dataclass работает на них
         annotations = {}
         for var in init_vars:
@@ -90,6 +92,7 @@ class Unsupported(Attachment, ABC):
     Класс для вложений, которые не поддерживаются в данный момент.
     Есть ряд функций которые реализовываться не будут из-за их специфичности
     """
+
     @abstractmethod
     def convert(self) -> str:
         """

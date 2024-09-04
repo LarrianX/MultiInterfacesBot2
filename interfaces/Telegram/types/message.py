@@ -1,17 +1,13 @@
 from typing import Optional, override
 
-from Base import Message as BaseMessage
+from telethon.tl.patched import Message
+
 from Base import ChatType, Attachment
+from Base import Message as BaseMessage
+from .chat import TelegramChat
 from .entity import TelegramEntity, TelegramAttachment
 from .user import TelegramUser
-from .chat import TelegramChat
 from ..interface import TelegramInterfaceStub
-from ..TestCase import TestCase
-
-from telethon.types import (
-    PeerUser,
-)
-from telethon.tl.patched import Message
 
 
 class TelegramMessage(TelegramEntity, BaseMessage):
@@ -73,4 +69,3 @@ class TelegramMessage(TelegramEntity, BaseMessage):
             await self.reply(text, attachments)
         elif isinstance(self.source, Message):
             await self.source.edit(text)
-

@@ -1,8 +1,8 @@
+from telethon.types import MessageMediaPhoto
+
 from Base import Photo as BasePhoto
 from .media import TelegramMedia
 from ...interface import TelegramInterfaceStub
-
-from telethon.types import MessageMediaPhoto
 
 
 class TelegramPhoto(TelegramMedia, BasePhoto):

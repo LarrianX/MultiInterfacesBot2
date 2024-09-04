@@ -7,9 +7,9 @@ from pydantic import ConfigDict
 from telethon.tl.types import TLObject
 
 from Base import Entity, Attachment, Unsupported
-from ..interface import TelegramInterfaceStub
 from ..TestCase import TestCase
 from ..constants import *
+from ..interface import TelegramInterfaceStub
 
 load_dotenv()
 
@@ -31,3 +31,10 @@ class TelegramAttachment(TelegramEntity, Attachment):
 
 class TelegramUnsupported(TelegramAttachment, Unsupported, ABC):
     pass
+
+
+class TelegramUnknown(TelegramUnsupported):
+    id: None = None
+
+    async def convert(self) -> str:
+        return "Unknown type"

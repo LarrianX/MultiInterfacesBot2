@@ -1,14 +1,17 @@
-import os
 import asyncio
+import os
 from typing import Optional, override
-
-from Base import BaseInterface, InputAttachment
-from .interface import TelegramInterfaceStub
-from .types import *
 
 import telethon.types
 from telethon import TelegramClient
 from telethon.events import NewMessage
+
+from Base import BaseInterface, InputAttachment
+from .interface import TelegramInterfaceStub
+from .types import *
+from .types.geo.geo_point import TelegramGeoPoint
+from .types.geo.venue import TelegramVenue
+from .types.poll.poll import TelegramPoll
 
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
@@ -56,6 +59,19 @@ class TelegramInterface(TelegramInterfaceStub):
         elif isinstance(tl, telethon.types.MessageMediaPhoto):
             return await TelegramPhoto.from_tl(**kwargs)
 
+        elif isinstance(tl, telethon.types.MessageMediaGeo):
+            return await TelegramGeoPoint.from_tl(**kwargs)
+
+        elif isinstance(tl, telethon.types.MessageMediaVenue):
+            return await TelegramVenue.from_tl(**kwargs)
+
+        elif isinstance(tl, telethon.types.MessageMediaPoll):
+            return await TelegramPoll.from_tl(**kwargs)
+
+        else:
+            return TelegramUnknown(source=tl, caller=self)
+
+
     @override
     async def get_entity(self, n: int | TelegramMessage) -> Optional[telethon.types.TLObject]:
         tl_object = None
@@ -67,10 +83,12 @@ class TelegramInterface(TelegramInterfaceStub):
         if tl_object:
             return tl_object
 
+
     @override
     async def send_message(self, id: int, text: str, attachments: Optional[list[InputAttachment]] = None) -> TelegramEntity:
         tl_object = await self.client.send_message(id, text)
         return await self.transform(tl_object)
+
 
     # @override
     # def start(self, loop: asyncio.AbstractEventLoop):
