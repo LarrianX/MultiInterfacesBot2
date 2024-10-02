@@ -5,27 +5,26 @@ from pydantic import ConfigDict
 from telethon.tl.types import TLObject
 
 from Base import Entity, Attachment, Unsupported
-from ..TestCase import TestCase
 from ..constants import *
-from ..interface import TelegramInterfaceStub
+from ..interface import DiscordInterfaceStub
 
 
-class TelegramEntity(Entity):
+class DiscordEntity(Entity):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     platform: str = PLATFORM
     source: Optional[TLObject] = None
-    caller: Optional[TelegramInterfaceStub | TestCase] = None
+    caller: Optional[DiscordInterfaceStub] = None
 
 
-class TelegramAttachment(TelegramEntity, Attachment):
+class DiscordAttachment(DiscordEntity, Attachment):
     pass
 
 
-class TelegramUnsupported(TelegramAttachment, Unsupported, ABC):
+class DiscordUnsupported(DiscordAttachment, Unsupported, ABC):
     pass
 
 
-class TelegramUnknown(TelegramUnsupported):
+class DiscordUnknown(DiscordUnsupported):
     id: None = None
 
     async def convert(self) -> str:

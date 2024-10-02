@@ -15,12 +15,21 @@ from .types.poll.poll import TelegramPoll
 
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
-PLATFORM = "Telegram"
+class Singleton(object):
+    _instance = None
 
+    def __new__(cls, *args, **kwargs):
+        if not isinstance(cls._instance, cls):
+            cls._instance = object.__new__(cls)
+        return cls._instance
 
-class TelegramInterface(TelegramInterfaceStub):
+    @classmethod
+    def get_instance(cls):
+        return cls._instance
+
+class TelegramInterface(TelegramInterfaceStub, Singleton):
     def __init__(self,
                  base_interface: BaseInterface,
                  api_id: int = API_ID,

@@ -1,10 +1,17 @@
-import importlib
+import asyncio
 import importlib
 import json
 import os
 from typing import Type
+from dotenv import load_dotenv
+from threading import Thread
 
 from Base import BaseInterface, Interface
+
+from interfaces.Discord import DiscordInterface
+from interfaces.Telegram import TelegramInterface
+
+load_dotenv()
 
 DIRECTORY = "interfaces"
 
@@ -37,7 +44,7 @@ def load_interfaces(base_interface: BaseInterface, directory=DIRECTORY, list="li
 if __name__ == '__main__':
     # Запуск ядра
     base = BaseInterface()
-    interfaces: list[Interface] = load_interfaces(base)
     # print(interfaces)
-
-    interfaces[0].start(None)
+    discord = Thread(target=lambda: DiscordInterface(base).start(asyncio.new_event_loop()))
+    discord.start()
+    TelegramInterface(base).start(None)

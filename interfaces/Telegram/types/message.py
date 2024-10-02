@@ -65,7 +65,7 @@ class TelegramMessage(TelegramEntity, BaseMessage):
     @override
     async def edit(self, text: str, attachments: list[Attachment] = None):
         if not self.source and self.caller:
-            self.source = self.caller.get_entity(self.id)
+            self.source = await self.caller.get_entity(self.id)
             await self.reply(text, attachments)
         elif isinstance(self.source, Message):
             await self.source.edit(text)
